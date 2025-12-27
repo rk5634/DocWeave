@@ -1,0 +1,41 @@
+Rajiv Kumar Yadav
+GitHub: github.com/rk5634 | LinkedIn: linkedin.com/in/rk5634 | Portfolio: rajivyadav.com
+Email: rajiv@rajivyadav.com | Phone: +91 6284472263
+Professional Summary
+Results-driven AI Engineer with 2+ years of experience in backend development and scalable AI systems.
+Proficient in Python, Go, Kafka, and PostgreSQL with expertise in microservices, REST APIs, Redis,
+Docker, distributed systems, and CI/CD pipelines for cloud-native architectures.
+Work Experience
+Software Engineer | Axtria India Pvt. Ltd. | January 2025 - Present
+- Built an AI-driven query system that cut manual SQL effort by 80%, improved accuracy by 25%.
+- Optimized batch and parallel processing, reducing query time 10x and increasing throughput 3x.
+- Architected concurrent, event-driven distributed systems in Go, processing 10M+ records 40% faster.
+- Streamlined 5+ cloud-native data pipelines, enabling real-time alerts and reducing manual work 60%.
+- Optimized CI/CD pipelines with Docker & Kubernetes, boosting release reliability and scalability.
+Junior Backend Engineer | Archmed Biotech Pvt. Ltd. | October 2023 - December 2024
+- Engineered scalable inventory system with FastAPI & PostgreSQL; cutting manual entry by 40%.
+- Developed backend dashboard in Python, processing 100+ daily data points for real-time insights.
+- Automated batch-expiry notifications with Python, sending 40+ timely alerts weekly.
+Projects
+SecureGate - Secure Authentication System (GO) Demo | GitHub
+Built a secure Go-based authentication system with JWT, device-aware sessions, fingerprint login, and full
+user lifecycle flows (registration, login, password reset, OAuth) using Postgres and Redis. Implemented
+production-grade security with HttpOnly cookies, rate-limiting, RBAC, and Dockerized deployment.
+AutoSight - Smart Traffic Vision System using YOLOv8 (Python) Demo | GitHub
+Built a real-time Smart Traffic Vision System using YOLOv8 and Flask for ANPR, achieving 98% license
+plate recognition accuracy. Used Python for preprocessing, model training, and scalable deployment,
+enabling efficient traffic monitoring.
+Technical Skills
+Programming Languages Python, Go, JavaScript, TypeScript
+Frameworks and Libraries Django, FastAPI, Flask, Gin, Fiber, Echo, Pandas, NumPy, Scikit-learn,
+PyTorch, Hugging Face Transformers, LangChain, LangGraph
+Databases SQL, PostgreSQL, MySQL, Snowflake, MongoDB, Redis
+APIs and Communication REST, gRPC, GraphQL, OAuth2, JWT-go, Postman
+DevOps and Cloud Docker, Kubernetes, AWS, Azure, CI/CD, Git, Linux, Bash, Agile, Jira
+Machine Learning and AI TensorFlow, PyTorch, OpenCV, MLOps, Data Pipelines, NLP, Retrieval-
+Augmented Generation (RAG), Knowledge Graphs, Vector Databases
+(Pinecone, Chroma), GenAI, Prompt Engineering
+Architecture and Systems Event-driven Architecture, Microservices, Cloud-native Architecture,
+Distributed Systems, ETL Automation, Message Queues (Kafka)
+Education
+Bachelor of Engineering in Computer Science (AI and ML), Chandigarh University (CGPA: 8.2)
