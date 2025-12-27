@@ -1,219 +1,241 @@
+# Agentic RAG System with OCR
 
-# Agentic RAG System with OCR (LangGraph + DeepSeek + ChromaDB)
+**LangGraph · DeepSeek OCR · ChromaDB**
 
-## Overview
+----------
 
-This project implements a **Retrieval-Augmented Generation (RAG) system** that allows users to upload documents (PDFs or images), extract text using **OCR**, and **chat with the document content** through an **agentic workflow orchestrated with LangGraph**.
+## 1. Overview
 
-The system is designed to reflect **real-world AI system architecture**, emphasizing:
+This project implements a **Retrieval-Augmented Generation (RAG) system** that enables users to upload documents (PDFs or images), extract text using **OCR**, and **interact conversationally with the document content** via an **agentic workflow orchestrated using LangGraph**.
+
+The system mirrors **real-world AI system architecture**, with emphasis on:
 
 -   Unstructured document ingestion
     
--   OCR-based text extraction
+-   OCR-driven text extraction
     
--   Vector search with persistence
+-   Persistent vector search
     
 -   LLM-based question answering
     
 -   Agentic control flow with validation and retries
     
 
-A **Streamlit frontend** is provided for interactive usage.
+A **Streamlit-based frontend** is included for interactive use.
 
 ----------
 
-## Key Features
+## 2. Key Features
 
--   **Document ingestion**
+### 2.1 Document Ingestion
+
+-   Supports standard PDFs, scanned PDFs, and image documents
     
-    -   Supports standard PDFs, scanned PDFs, and image documents
-        
--   **OCR (Mandatory)**
+
+### 2.2 OCR (Mandatory)
+
+-   Uses **DeepSeek OCR** via DeepInfra’s OpenAI-compatible API
     
-    -   Uses **DeepSeek OCR** via DeepInfra’s OpenAI-compatible API
-        
--   **Text processing**
+
+### 2.3 Text Processing
+
+-   OCR normalization and cleanup
     
-    -   OCR normalization and cleanup
-        
-    -   Paragraph-aware semantic chunking
-        
--   **Embeddings & Vector Store**
+-   Paragraph-aware semantic chunking
     
-    -   OpenAI embeddings
-        
-    -   Persistent **ChromaDB** vector store
-        
--   **Agentic RAG Pipeline (LangGraph)**
+
+### 2.4 Embeddings & Vector Store
+
+-   OpenAI embeddings
     
-    -   Retriever Agent
-        
-    -   Generator Agent
-        
-    -   Validator Agent (hallucination & grounding check)
-        
-    -   Final Response Agent
-        
-    -   Conditional routing + retry loop
-        
--   **Frontend**
+-   Persistent **ChromaDB** vector store
     
-    -   Streamlit UI for upload and chat
-        
--   **Secure configuration**
+
+### 2.5 Agentic RAG Pipeline (LangGraph)
+
+-   Retriever Agent
     
-    -   Environment variables only (no hardcoded credentials)
-        
+-   Generator Agent
+    
+-   Validator Agent (hallucination & grounding checks)
+    
+-   Final Response Agent
+    
+-   Conditional routing with retry logic
+    
+
+### 2.6 Frontend
+
+-   Streamlit UI for document upload and chat
+    
+
+### 2.7 Secure Configuration
+
+-   Environment variables only
+    
+-   No hardcoded credentials
+    
 
 ----------
 
-## System Architecture
+## 3. System Architecture
 
-### High-Level Flow
+### 3.1 High-Level Flow
 
-`User uploads document
+User uploads document
         ↓
 Document Loader
         ↓
 OCR (DeepSeek OCR)
-        ↓ Text Cleaning
+        ↓
+Text Cleaning
         ↓
 Semantic Chunking
         ↓
 Embeddings
         ↓
 ChromaDB (Persistent)
-        ↓ User asks a question
+        ↓
+User asks a question
         ↓
 LangGraph Agentic Workflow
         ↓
-Validated Answer` 
+Validated Answer
+ 
 
 ----------
 
-## Agentic Workflow (LangGraph)
+## 4. Agentic Workflow (LangGraph)
 
-The core of the system is a **LangGraph-based agentic workflow**.
+The core logic is implemented as a **LangGraph-based agentic workflow**.
 
-### Agents / Nodes
+### 4.1 Agents / Nodes
 
 1.  **Retriever Agent**
     
-    -   Fetches top-K relevant chunks from ChromaDB
+    -   Retrieves top-K relevant chunks from ChromaDB
         
 2.  **Generator Agent**
     
     -   Uses GPT-4o-mini
         
-    -   Generates answers strictly grounded in retrieved context
+    -   Produces answers strictly grounded in retrieved context
         
 3.  **Validator Agent**
     
-    -   Verifies answer grounding and relevance
+    -   Verifies grounding and relevance
         
-    -   Detects hallucinations conservatively
+    -   Conservatively detects hallucinations
         
 4.  **Final Response Agent**
     
-    -   Returns a clean, user-facing answer
+    -   Produces the final, user-facing answer
         
 
-### Control Flow Logic
+### 4.2 Control Flow Logic
 
--   Shared state is passed between agents
+-   Shared state is propagated across agents
     
--   Validation outcome determines the next step
+-   Validation outcome determines routing
     
--   If validation fails and retry limit is not reached:
+-   If validation fails and retry limits are not exceeded:
     
-    -   The system retries answer generation
+    -   Answer generation is retried
         
 -   Otherwise:
     
-    -   The workflow terminates with a final response
+    -   Workflow terminates with a final response
         
 
-This satisfies the requirement for **conditional transitions and retry loops**.
+This design fulfills the requirement for **conditional transitions and retry loops**.
 
 ----------
 
-## Project Structure
+## 5. Project Structure
 
-`rag-langgraph-ocr/
+rag-langgraph-ocr/
 │
-├── config/ # Configuration & prompts ├── data/ # Raw data, OCR output, processed text, ChromaDB ├── ingestion/ # Loader, OCR, cleaning, chunking ├── embeddings/ # Embedder abstraction + vector store ├── rag/ # Retriever, generator, validator, responder ├── graph/ # LangGraph state, nodes, edges, workflow ├── services/ # Ingestion & chat service layer ├── frontend/ # Streamlit app (component-based) ├── requirements.txt
-└── README.md` 
+├── config/        # Configuration and prompts
+├── data/          # Raw files, OCR output, processed text, ChromaDB
+├── ingestion/     # Loader, OCR, cleaning, chunking
+├── embeddings/    # Embedding abstraction and vector store
+├── rag/           # Retriever, generator, validator, responder
+├── graph/         # LangGraph state, nodes, edges, workflow
+├── services/      # Ingestion and chat service layer
+├── frontend/      # Streamlit app (component-based)
+├── requirements.txt
+└── README.md
+
 
 ----------
 
-## OCR Choice: DeepSeek OCR
+## 6. OCR Choice: DeepSeek OCR
 
-The assignment specifies **DeepSeek OCR as mandatory**.
+The assignment mandates **DeepSeek OCR**.
 
-This system uses **DeepSeek OCR via DeepInfra**, leveraging their OpenAI-compatible API:
+This system integrates **DeepSeek OCR via DeepInfra**, using an OpenAI-compatible API:
 
--   Supports image URLs and base64 image payloads
+-   Supports image URLs and base64-encoded images
     
--   Works for scanned PDFs (via PDF → image conversion)
+-   Handles scanned PDFs via PDF-to-image conversion
     
--   Cleanly isolated in `ingestion/ocr.py`
+-   Isolated cleanly in `ingestion/ocr.py`
     
 
-The OCR layer is modular and could be swapped if required, without changing downstream logic.
+The OCR layer is modular and can be swapped without affecting downstream components.
 
 ----------
 
-## Configuration & Environment Variables
+## 7. Configuration & Environment Variables
 
-All credentials and configuration are loaded from environment variables.
+All configuration is provided via environment variables.
 
-Example `.env` file:
+### Example `.env`
 
-`OPENAI_API_KEY=your_openai_key_here
-DEEPSEEK_API_KEY=your_deepinfra_key_here` 
+`OPENAI_API_KEY=your_openai_key_here DEEPSEEK_API_KEY=your_deepinfra_key_here` 
 
 No secrets are hardcoded anywhere in the codebase.
 
 ----------
 
-## Running the Application
+## 8. Running the Application
 
-### 1. Install dependencies
+### 8.1 Install Dependencies
 
 `pip install -r requirements.txt` 
 
-> Note: `pdf2image` requires **Poppler** installed on your system.
+> **Note**: `pdf2image` requires **Poppler** to be installed on the system.
 
-### 2. Start the Streamlit app
+### 8.2 Start the Application
 
 `streamlit run frontend/app.py` 
 
-### 3. Usage
+### 8.3 Usage Flow
 
 1.  Upload a PDF or image document
     
 2.  Click **Ingest Document**
     
-3.  Ask questions about the document content
+3.  Ask questions about the document
     
 4.  Receive validated, grounded answers
     
 
 ----------
 
-## Design Decisions & Rationale
+## 9. Design Decisions & Rationale
 
--   **Agent separation**  
-    Each responsibility (retrieve, generate, validate, respond) is isolated to its own agent.
+-   **Agent Separation**  
+    Each responsibility (retrieval, generation, validation, response) is isolated.
     
--   **Validation-driven retries**  
-    Retries are only triggered when the validator detects hallucination or lack of grounding.
+-   **Validation-Driven Retries**  
+    Retries occur only when grounding or hallucination checks fail.
     
--   **Persistent vector store**  
-    ChromaDB persistence ensures documents remain searchable across sessions.
+-   **Persistent Vector Store**  
+    ChromaDB persistence ensures cross-session document availability.
     
--   **Service layer abstraction**  
-    Frontend communicates only with service interfaces, not internal logic.
+-   **Service Layer Abstraction**  
+    The frontend communicates exclusively with service interfaces.
     
--   **Deterministic behavior**  
-    Low temperature generation and conservative validation reduce hallucinations.# Agentic RAG System with OCR (LangGraph + DeepSeek + ChromaDB)
+-   **Deterministic Behavior**  
+    Low-temperature generation and conservative validation reduce hallucinations.
