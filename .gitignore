@@ -84,6 +84,7 @@ data/raw/
 data/processed/
 data/chroma/
 data/tmp/
+data/ocr/
 
 # =====================================================
 # ML / AI artifacts
