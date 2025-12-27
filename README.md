@@ -192,7 +192,8 @@ All configuration is provided via environment variables.
 
 ### Example `.env`
 
-`OPENAI_API_KEY=your_openai_key_here DEEPSEEK_API_KEY=your_deepinfra_key_here` 
+`OPENAI_API_KEY=your_openai_key_here 
+ DEEPSEEK_API_KEY=your_deepinfra_key_here` 
 
 No secrets are hardcoded anywhere in the codebase.
 
