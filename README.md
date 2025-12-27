@@ -82,25 +82,16 @@ A **Streamlit-based frontend** is included for interactive use.
 
 ### 3.1 High-Level Flow
 
-User uploads document
-        ↓
-Document Loader
-        ↓
-OCR (DeepSeek OCR)
-        ↓
-Text Cleaning
-        ↓
-Semantic Chunking
-        ↓
-Embeddings
-        ↓
-ChromaDB (Persistent)
-        ↓
-User asks a question
-        ↓
-LangGraph Agentic Workflow
-        ↓
-Validated Answer
+User uploads document  
+Document loader processes the file  
+OCR extracts text using DeepSeek OCR  
+Text is cleaned and normalized  
+Content is semantically chunked  
+Embeddings are generated  
+Data is stored in persistent ChromaDB  
+User asks a question  
+LangGraph agentic workflow is executed  
+A validated answer is returned
  
 
 ----------
@@ -153,18 +144,20 @@ This design fulfills the requirement for **conditional transitions and retry loo
 
 ## 5. Project Structure
 
-rag-langgraph-ocr/
-│
-├── config/        # Configuration and prompts
-├── data/          # Raw files, OCR output, processed text, ChromaDB
-├── ingestion/     # Loader, OCR, cleaning, chunking
-├── embeddings/    # Embedding abstraction and vector store
-├── rag/           # Retriever, generator, validator, responder
-├── graph/         # LangGraph state, nodes, edges, workflow
-├── services/      # Ingestion and chat service layer
-├── frontend/      # Streamlit app (component-based)
-├── requirements.txt
-└── README.md
+DocWeave/
+
+config/        Configuration and prompts  
+data/          Raw files, OCR output, processed text, ChromaDB  
+ingestion/     Loader, OCR, cleaning, chunking  
+embeddings/    Embedding abstraction and vector store  
+rag/           Retriever, generator, validator, responder  
+graph/         LangGraph state, nodes, edges, workflow  
+services/      Ingestion and chat service layer  
+frontend/      Streamlit app (component-based)  
+
+requirements.txt  
+README.md
+
 
 
 ----------
@@ -192,8 +185,8 @@ All configuration is provided via environment variables.
 
 ### Example `.env`
 
-`OPENAI_API_KEY=your_openai_key_here 
- DEEPSEEK_API_KEY=your_deepinfra_key_here` 
+OPENAI_API_KEY=your_openai_key_here
+DEEPSEEK_API_KEY=your_deepinfra_key_here` 
 
 No secrets are hardcoded anywhere in the codebase.
 
